@@ -1,0 +1,33 @@
+{
+  "name": "spotify-backend",
+  "version": "0.0.1",
+  "private": true,
+  "author": "Jaime Leonardo Suncin Cruz <leosuncin@gmail.com>",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "type-check": "tsc"
+  },
+  "dependencies": {
+    "cross-fetch": "^3.0.4",
+    "next": "^9.2.2",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.21",
+    "@types/react": "^16.9.16",
+    "@types/react-dom": "^16.9.4",
+    "typescript": "^3.8.3"
+  },
+  "license": "GPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leosuncin/spotify-backend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/leosuncin/spotify-backend/issues"
+  },
+  "homepage": "https://github.com/leosuncin/spotify-backend"
+}
