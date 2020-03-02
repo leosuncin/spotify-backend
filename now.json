@@ -1,0 +1,9 @@
+{
+  "name": "spotify-backend",
+  "version": 2,
+  "env": {
+    "SPOTIFY_CLIENT_ID": "@remote-control-spotify-client-id",
+    "SPOTIFY_SECRET": "@remote-control-spotify-secret",
+    "CALLBACK_URL": "https://spotify-backend.now.sh/api/oauth/spotify"
+  }
+}
