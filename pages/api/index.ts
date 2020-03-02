@@ -1,5 +1,7 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextHttpHandler } from 'types';
 
-export default (_: NextApiRequest, res: NextApiResponse) => {
+const handler: NextHttpHandler = (_, res) => {
   res.json(process.env);
 };
+
+export default handler
