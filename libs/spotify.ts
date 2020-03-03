@@ -1,5 +1,5 @@
 import fetch from 'cross-fetch';
-import { Token } from 'types';
+import { Token, Profile } from 'types';
 
 function encodeBody(body: Object): string {
   return Object.entries(body)
@@ -42,6 +42,29 @@ export async function getToken(code: string): Promise<Token> {
       code,
       redirect_uri: process.env.CALLBACK_URL,
     }),
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+
+    throw new SpotifyError(error);
+  }
+
+  return response.json();
+}
+
+/**
+ * Get user profile from Spotify
+ *
+ * @export
+ * @param {Token} token
+ * @returns {Promise<Profile>} Spotify profile
+ */
+export async function getProfile(token: Token): Promise<Profile> {
+  const response = await fetch('https://api.spotify.com/v1/me', {
+    headers: {
+      Authorization: `${token.token_type} ${token.access_token}`,
+    },
   });
 
   if (!response.ok) {
