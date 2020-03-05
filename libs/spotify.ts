@@ -76,3 +76,34 @@ export async function getProfile(token: Token): Promise<Profile> {
 
   return response.json();
 }
+
+/**
+ * Refresh authorization tokens
+ *
+ * @param {Token} token
+ * @returns {Promise<Token>} Spotify Token
+ */
+export async function refreshToken(token: Token): Promise<Token> {
+  const basic = `Basic ${Buffer.from(
+    `${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_SECRET}`,
+  ).toString('base64')}`;
+  const response = await fetch('https://accounts.spotify.com/api/token', {
+    method: 'POST',
+    body: encodeBody({
+      grant_type: 'refresh_token',
+      refresh_token: token.refresh_token,
+    }),
+    headers: {
+      Authorization: basic,
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+
+    throw new SpotifyError(error);
+  }
+
+  return response.json();
+}
