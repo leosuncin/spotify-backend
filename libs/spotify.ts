@@ -25,9 +25,10 @@ class SpotifyError extends Error {
  *
  * @export
  * @param {string} code Authorization code
+ * @param {string} redirect_uri Redirect URI
  * @returns {Promise<Token>} Spotify token
  */
-export async function getToken(code: string): Promise<Token> {
+export async function getToken(code: string, redirect_uri: string): Promise<Token> {
   const basic = Buffer.from(
     `${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_SECRET}`,
   ).toString('base64');
@@ -40,7 +41,7 @@ export async function getToken(code: string): Promise<Token> {
     body: encodeBody({
       grant_type: 'authorization_code',
       code,
-      redirect_uri: process.env.CALLBACK_URL,
+      redirect_uri,
     }),
   });
 
